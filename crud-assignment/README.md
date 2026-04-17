@@ -31,7 +31,7 @@
 
 | Resource | URL |
 | :--- | :--- |
-| 🌐 **Live API** | [https://crud-assignment-rachit.onrender.com](https://crud-assignment-rachit.onrender.com) |
+| 🌐 **Live API** | [https://backend-assignments-j3db.onrender.com](https://crud-assignment-rachit.onrender.com) |
 | 🚀 **Postman Docs** | [View Postman Documentation](https://documenter.getpostman.com/view/YOUR_POSTMAN_ID) |
 
 ---
