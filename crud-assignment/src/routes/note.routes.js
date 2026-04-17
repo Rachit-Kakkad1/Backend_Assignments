@@ -8,7 +8,8 @@ import {
   getNoteById,
   replaceNote,
   updateNote,
-  deleteNote
+  deleteNote,
+  deleteNotesBulk
 } from "../controllers/note.controller.js";
 
 router.post("/", createNote);
@@ -18,6 +19,7 @@ router.get("/:id", getNoteById);
 router.put("/:id", replaceNote);
 router.patch("/:id", updateNote);
 router.delete("/:id", deleteNote);
+router.delete("/bulk", deleteNotesBulk);
 
 
 export default router;
