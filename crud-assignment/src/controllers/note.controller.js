@@ -60,3 +60,20 @@ export const createNotesBulk = async (req, res) => {
   }
 };
 
+export const getAllNotes = async (req, res) => {
+  try {
+    const notes = await Note.find();
+
+    return res.status(200).json({
+      success: true,
+      message: "Notes fetched successfully",
+      data: notes,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      data: null,
+    });
+  }
+};
