@@ -113,3 +113,52 @@ export const getNoteById = async (req, res) => {
     });
   }
 };
+
+export const replaceNote = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { title, content, category, isPinned } = req.body;
+
+    if (!isValidObjectId(id)) {
+      return res.status(400).json({
+        success: false,
+        message: "Invalid note ID",
+        data: null,
+      });
+    }
+
+    if (!title || !content) {
+      return res.status(400).json({
+        success: false,
+        message: "All fields are required for PUT",
+        data: null,
+      });
+    }
+
+    const updatedNote = await Note.findByIdAndUpdate(
+      id,
+      { title, content, category, isPinned },
+      { new: true, overwrite: true, runValidators: true }
+    );
+
+    if (!updatedNote) {
+      return res.status(404).json({
+        success: false,
+        message: "Note not found",
+        data: null,
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "Note replaced successfully",
+      data: updatedNote,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      data: null,
+    });
+  }
+};
