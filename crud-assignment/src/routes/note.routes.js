@@ -5,13 +5,15 @@ import {
   createNote,
   createNotesBulk,
   getAllNotes,
-  getNoteById
+  getNoteById,
+  replaceNote
 } from "../controllers/note.controller.js";
 
 router.post("/", createNote);
 router.post("/bulk", createNotesBulk);
 router.get("/", getAllNotes);
 router.get("/:id", getNoteById);
+router.put("/:id", replaceNote);
 
 
 export default router;
