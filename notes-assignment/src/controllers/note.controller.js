@@ -386,7 +386,27 @@ export const filterNotes = async (req, res) => {
     });
   }
 };
-export const getPinnedNotes = async (req, res) => {};
+export const getPinnedNotes = async (req, res) => {
+  try {
+    const filter = { isPinned: true };
+    if (req.query.category) filter.category = req.query.category;
+
+    const notes = await Note.find(filter);
+
+    res.status(200).json({
+      success: true,
+      message: "Pinned notes fetched successfully",
+      count: notes.length,
+      data: notes,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};
 export const filterByCategory = async (req, res) => {};
 export const filterByDateRange = async (req, res) => {};
 export const paginateNotes = async (req, res) => {};
