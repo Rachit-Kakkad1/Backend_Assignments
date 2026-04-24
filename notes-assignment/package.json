@@ -1,0 +1,21 @@
+{
+  "name": "notes-assignment",
+  "version": "1.0.0",
+  "description": "New Notes Management REST API from scratch using Node.js + Express + MongoDB (Mongoose).",
+  "license": "ISC",
+  "author": "Rachit Kakkad",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongoose": "^9.5.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
