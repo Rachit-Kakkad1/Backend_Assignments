@@ -62,7 +62,24 @@ export const createBulkNotes = async (req, res) => {
     });
   }
 };
-export const getAllNotes = async (req, res) => {};
+export const getAllNotes = async (req, res) => {
+  try {
+    const notes = await Note.find();
+
+    res.status(200).json({
+      success: true,
+      message: "Notes fetched successfully",
+      count: notes.length,
+      data: notes,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};
 export const getNoteById = async (req, res) => {};
 export const replaceNote = async (req, res) => {};
 export const updateNote = async (req, res) => {};
