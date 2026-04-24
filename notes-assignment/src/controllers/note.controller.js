@@ -362,7 +362,30 @@ export const getNoteSummary = async (req, res) => {
     });
   }
 };
-export const filterNotes = async (req, res) => {};
+export const filterNotes = async (req, res) => {
+  try {
+    const filter = {};
+    if (req.query.category) filter.category = req.query.category;
+    if (req.query.isPinned !== undefined) {
+      filter.isPinned = req.query.isPinned === "true";
+    }
+
+    const notes = await Note.find(filter);
+
+    res.status(200).json({
+      success: true,
+      message: "Notes fetched successfully",
+      count: notes.length,
+      data: notes,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};
 export const getPinnedNotes = async (req, res) => {};
 export const filterByCategory = async (req, res) => {};
 export const filterByDateRange = async (req, res) => {};
