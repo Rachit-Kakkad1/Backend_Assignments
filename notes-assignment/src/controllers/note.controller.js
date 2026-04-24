@@ -298,7 +298,35 @@ export const getNotesByCategory = async (req, res) => {
     });
   }
 };
-export const getNotesByStatus = async (req, res) => {};
+export const getNotesByStatus = async (req, res) => {
+  try {
+    const { isPinned } = req.params;
+
+    if (isPinned !== "true" && isPinned !== "false") {
+      return res.status(400).json({
+        success: false,
+        message: "isPinned must be true or false",
+        data: null,
+      });
+    }
+
+    const pinned = isPinned === "true";
+    const notes = await Note.find({ isPinned: pinned });
+
+    res.status(200).json({
+      success: true,
+      message: `Fetched all ${pinned ? "pinned" : "unpinned"} notes`,
+      count: notes.length,
+      data: notes,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};
 export const getNoteSummary = async (req, res) => {};
 export const filterNotes = async (req, res) => {};
 export const getPinnedNotes = async (req, res) => {};
