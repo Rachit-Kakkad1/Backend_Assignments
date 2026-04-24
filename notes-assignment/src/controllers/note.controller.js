@@ -1,37 +1,24 @@
 import Note from "../models/note.model.js";
+import mongoose from "mongoose";
 
-// @desc    Create a single note
-// @route   POST /api/notes
-// @access  Public
-export const createNote = async (req, res) => {
-  try {
-    const { title, content, category, isPinned } = req.body;
+// Endpoints will be implemented one by one
 
-    if (!title || !content) {
-      return res.status(400).json({
-        success: false,
-        message: "Title and content are required",
-        data: null,
-      });
-    }
-
-    const note = await Note.create({
-      title,
-      content,
-      category,
-      isPinned,
-    });
-
-    res.status(201).json({
-      success: true,
-      message: "Note created successfully",
-      data: note,
-    });
-  } catch (error) {
-    res.status(500).json({
-      success: false,
-      message: error.message,
-      data: null,
-    });
-  }
-};
+export const createNote = async (req, res) => {};
+export const createBulkNotes = async (req, res) => {};
+export const getAllNotes = async (req, res) => {};
+export const getNoteById = async (req, res) => {};
+export const replaceNote = async (req, res) => {};
+export const updateNote = async (req, res) => {};
+export const deleteNote = async (req, res) => {};
+export const deleteBulkNotes = async (req, res) => {};
+export const getNotesByCategory = async (req, res) => {};
+export const getNotesByStatus = async (req, res) => {};
+export const getNoteSummary = async (req, res) => {};
+export const filterNotes = async (req, res) => {};
+export const getPinnedNotes = async (req, res) => {};
+export const filterByCategory = async (req, res) => {};
+export const filterByDateRange = async (req, res) => {};
+export const paginateNotes = async (req, res) => {};
+export const paginateByCategory = async (req, res) => {};
+export const sortNotes = async (req, res) => {};
+export const sortPinnedNotes = async (req, res) => {};
