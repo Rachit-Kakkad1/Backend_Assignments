@@ -407,7 +407,34 @@ export const getPinnedNotes = async (req, res) => {
     });
   }
 };
-export const filterByCategory = async (req, res) => {};
+export const filterByCategory = async (req, res) => {
+  try {
+    const { name } = req.query;
+
+    if (!name) {
+      return res.status(400).json({
+        success: false,
+        message: "Query param 'name' is required",
+        data: null,
+      });
+    }
+
+    const notes = await Note.find({ category: name });
+
+    res.status(200).json({
+      success: true,
+      message: `Notes filtered by category: ${name}`,
+      count: notes.length,
+      data: notes,
+    });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message,
+      data: null,
+    });
+  }
+};
 export const filterByDateRange = async (req, res) => {};
 export const paginateNotes = async (req, res) => {};
 export const paginateByCategory = async (req, res) => {};
